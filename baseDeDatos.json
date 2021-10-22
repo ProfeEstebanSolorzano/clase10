@@ -1,1 +1,3 @@
-[]
+[{ "nombre": "Esteban", "apellido": "Solorzano", "password": "123", "correo": "asdfg@fhgasd.com", "genero": "male", "hobbies": ["Music", "Sports"], "edad": "18", "bio": "sadgasdfgagasd" },
+    { "nombre": "Graciela", "apellido": "Hernandez", "password": "123456", "correo": "graci@graci.com", "genero": "female", "hobbies": ["Music", "Travel"], "edad": "18", "bio": "sadgasdfgagasd" }
+]

@@ -16,7 +16,12 @@ const server = createServer((req, res) => {
         req.on('end', async() => {
             finalData = JSON.parse(body);
             if (req.url === '/api/v1/registrar') {
-                const response = await registrar(finalData);
+                //const response = await registrar(finalData);
+                console.log('Registrando')
+                res.end();
+            } else if (req.url === '/api/v1/login') {
+                const response = await login(finalData);
+                console.log('logueando: ', response)
                 res.end();
             }
         });
@@ -38,5 +43,27 @@ registrar = async(usuario) => {
     } catch (e) {
         console.log(e);
         return 'error';
+    }
+}
+
+login = async(datos) => {
+    let data = fs.readFileSync('./baseDeDatos.json');
+    data = JSON.parse(data);
+    let estaLogueado = false;
+    data.forEach((usuario) => {
+        if (usuario.correo === datos.correo) {
+            if (usuario.password === datos.password) {
+                console.log('entra')
+                estaLogueado = true;
+                return 'exito'
+            } else {
+                return 'contraseña incorrecta'
+            }
+        }
+    });
+    if (!estaLogueado) {
+        return 'Correo incorrecto o controseña incorrecta'
+    } else {
+        return 'exito'
     }
 }
